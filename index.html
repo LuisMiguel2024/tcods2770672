@@ -1,27 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome everybody</title>
     <style>
-body {
-    background-color: rgb(255, 0, 0);
-    color: #fff;
-}
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
+        body {
+            background-color: #EED0D6;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23c9adb2' fill-opacity='0.6'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");
+            font-family: 'Poppins', sans-serif;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1, 6rem;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        menu {
+            padding: 0;
+        }
+
+        menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            margin-top: 2rem;
+            padding: 0;
+            gap: 1rem;
+        }
+
+        menu ul li {
+            border-radius: 4rem;
+            background-color: #fff;
+            border: 2px solid #008080;
+            padding: 0.5rem;
+            width: 280px;
+            transition: all 0.5s;
+        }
+
+        menu ul li a span {
+            background-color: #008080;
+            border-radius: 2rem;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            width: 24px;
+        }
+
+        menu ul li a:is(:link, :visited) {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: #008080;
+        }
+
+        menu ul li:is(:hover) {
+            background-color: #008080;
+            border: 2px solid #fff;
+        }
+
+        menu ul li:is(:hover) a {
+            color: #fff;
+        }
+
+        menu ul li:is(:hover) a span {
+            background-color: #fff;
+            color: #008080;
+        }
     </style>
 </head>
+
 <body>
     <main>
-<h1>ID: 2770672</h1>
-<h2>Tecnico en desarrollo de software</h2>
+        <h1>ID: 2770672</h1>
+        <h2>Tecnico en desarrollo de software</h2>
+        <menu>
+            <ul>
+                <li>
+                    <a href="01-UI/01-wireframe_hifi.html" target="_blank"><span>01</span> Wireframe HIFI</a>
+                </li>
+                <LI>
+                    <a href="01-UI/02-prototyoe.html" target="_blank"><span>02</span> Prototype</a>
+                </LI>
+                <li>
+                    <a href="01-UI/03-Style_guide.html" target="_blank"><span>03</span> Style guide</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank"><span>04</span> Mockup (Design)</a>
+                </li>
+            </ul>
+        </menu>
     </main>
 </body>
+
 </html>
