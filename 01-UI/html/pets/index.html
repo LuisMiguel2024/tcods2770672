@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Pets</title>
+    <link rel="stylesheet" href="../../css/master.css">
+</head>
+
+<body>
+    <main>
+        <header class="nav level-1">
+            <a href="../dashboard.html">
+                <img src="../../image/ico-back.svg" alt="back">
+            </a>
+            <img src="../../image/Vector.svg" alt="logo">
+            <a href="" class="burguer">
+                <img src="../../image/mburger.svg" alt="menu burguer">
+            </a>
+        </header>
+        <section class="module">
+            <h1>Module Pets</h1>
+            <a class="add" href="add.html">
+                <img src="../../image/ico-add.svg" alt="add" width="30px">
+                Add Pet
+            </a>
+            <table>
+
+                <body>
+                    <tr>
+                        <td>
+                            <img src="../../image/ico-pets.svg" alt="">
+                        </td>
+                        <td>
+                            <span>Rocky</span>
+                            <p>Dog</p>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show"><img src="../../image/ico-search.svg" alt=""></a>
+                            <a href="edit.html" class="edit"><img src="../../image/ico-edit.svg" alt=""></a>
+                            <a href="javascript:;" class="delete"><img src="../../image/ico-trash.svg" alt=""></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../../image/ico-pets.svg" alt="">
+                        </td>
+                        <td>
+                            <span>Princesa</span>
+                            <p>Cat</p>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show"><img src="../../image/ico-search.svg" alt=""></a>
+                            <a href="edit.html" class="edit"><img src="../../image/ico-edit.svg" alt=""></a>
+                            <a href="javascript:;" class="delete"><img src="../../image/ico-trash.svg" alt=""></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../../image/ico-pets.svg" alt="">
+                        </td>
+                        <td>
+                            <span>Zeus</span>
+                            <p>Frog</p>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show"><img src="../../image/ico-search.svg" alt=""></a>
+                            <a href="edit.html" class="edit"><img src="../../image/ico-edit.svg" alt=""></a>
+                            <a href="javascript:;" class="delete"><img src="../../image/ico-trash.svg" alt=""></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../../image/ico-pets.svg" alt="">
+                        </td>
+                        <td>
+                            <span>Peluche</span>
+                            <p>Snake</p>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show"><img src="../../image/ico-search.svg" alt=""></a>
+                            <a href="edit.html" class="edit"><img src="../../image/ico-edit.svg" alt=""></a>
+                            <a href="javascript:;" class="delete"><img src="../../image/ico-trash.svg" alt=""></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../../image/ico-pets.svg" alt="">
+                        </td>
+                        <td>
+                            <span>Misifu</span>
+                            <p>Tigger</p>
+                        </td>
+                        <td>
+                            <a href="show.html" class="show"><img src="../../image/ico-search.svg" alt=""></a>
+                            <a href="edit.html" class="edit"><img src="../../image/ico-edit.svg" alt=""></a>
+                            <a href="javascript:;" class="delete"><img src="../../image/ico-trash.svg" alt=""></a>
+                        </td>
+                    </tr>
+                </body>
+            </table>
+        </section>
+    </main>
+    <script src="../../js/sweetalert2.js"></script>
+    <script src="../../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.delete', function () {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#03045e",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "The pet has been deleted.",
+                            confirmButtonColor: "#03045e",
+                            icon: "success"
+                        });
+                    }
+                });
+            })
+        });
+    </script>
+</body>
+
+</html>

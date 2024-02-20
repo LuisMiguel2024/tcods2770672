@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add User</title>
+    <title>Edit Pet</title>
     <link rel="stylesheet" href="../../css/master.css">
 </head>
 
@@ -19,16 +19,15 @@
                 <img src="../../image/mburger.svg" alt="menu burguer">
             </a>
         </header>
-        <section class="create">
-            <h1>Add User</h1>
+        <section class="edit">
+            <h1>Edit Pet</h1>
             <form action="dashboard.html" method="post" enctype="multipart/form-data">
-                <img src="../../image/ico-users.svg" alt="upload" id="upload">
+                <img src="../../image/pet.png" alt="upload" id="upload">
                 <input type="file" name="photo" id="photo" accept="image/*" required>
-                <input type="text" name="text" placeholder="full name" required>
-                <input type="number" name="phone" placeholder="phone number" required>
-                <input type="email" name="email" placeholder="email" required>
-                <input type="password" name="password" placeholder="password" required>
-            <button type="submit">ADD</button>
+                <input type="text" name="text" placeholder="full name" value="Rocky">
+                <input type="text" name="pet" placeholder="type of pet" value="Dog" required>
+                <input type="email" name="email" placeholder="email" value="1 año" required>
+                            <button type="submit">Update</button>
             </form>
         </section>
     </main>
