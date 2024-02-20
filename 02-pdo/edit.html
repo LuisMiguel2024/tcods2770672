@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Pet</title>
+    <link rel="stylesheet" href="../../css/master.css">
+</head>
+
+<body>
+    <main>
+        <header class="nav level-1">
+            <a href="index.html">
+                <img src="../../image/ico-back.svg" alt="back">
+            </a>
+            <img src="../../image/Vector.svg" alt="logo">
+            <a href="" class="burguer">
+                <img src="../../image/mburger.svg" alt="menu burguer">
+            </a>
+        </header>
+        <section class="edit">
+            <h1>Edit Pet</h1>
+            <form action="dashboard.html" method="post" enctype="multipart/form-data">
+                <img src="../../image/pet.png" alt="upload" id="upload">
+                <input type="file" name="photo" id="photo" accept="image/*" required>
+                <input type="text" name="text" placeholder="full name" value="Rocky">
+                <input type="text" name="pet" placeholder="type of pet" value="Dog" required>
+                <input type="email" name="email" placeholder="email" value="1 año" required>
+                            <button type="submit">Update</button>
+            </form>
+        </section>
+    </main>
+    <script src="../../js/sweetalert2.js"></script>
+    <script src="../../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#upload').click(function (e) { 
+                e.preventDefault()
+                $('#photo').click()
+                
+            });
+            $('#photo').change(function (e) { 
+                e.preventDefault();
+                let reader = new FileReader()
+                reader.onload = function(event) {
+                    $('#upload').attr('src', event.target.result)
+                }
+                reader.readAsDataURL(this.files[0])
+            });
+        });
+    </script>
+</body>
+
+</html>
