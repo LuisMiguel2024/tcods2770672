@@ -44,9 +44,9 @@ $pets = getallpets($conx);
                             <p><?php echo $pet['kind']?> </p>
                         </td>
                         <td>
-                            <a href="show.html" class="show"><img src="<?php echo URLIMGS . "/ico-search.svg" ?>"  alt="show"></a>
-                            <a href="edit.html" class="edit"><img src="<?php echo URLIMGS . "/ico-edit.svg" ?>"  alt="edit"></a>
-                            <a href="javascript:;" class="delete"><img src="<?php echo URLIMGS . "/ico-trash.svg" ?>"  alt=""></a>
+                            <a href="show.php?id=<?=$pet['id']?>" class="show"><img src="<?php echo URLIMGS . "/ico-search.svg" ?>"  alt="show"></a>
+                            <a href="edit.php?id=<?=$pet['id']?>" class="edit"><img src="<?php echo URLIMGS . "/ico-edit.svg" ?>"  alt="edit"></a>
+                            <a href="javascript:;" class="delete" data-id="<?=$pet['id']?>"><img src="<?php echo URLIMGS . "/ico-trash.svg" ?>"  alt=""></a>
                         </td>
                     </tr>
                     <?php endforeach ?>
@@ -54,11 +54,25 @@ $pets = getallpets($conx);
             </table>
         </section>
     </main>
-    <script src="../../js/sweetalert2.js"></script>
-    <script src="../../js/jquery-3.7.1.min.js"></script>
+    <script src="<?php echo URLJS . "/sweetalert2.js" ?>"</script>
+    <script src="<?php echo URLJS . "/jquery-3.7.1.min.js" ?>"</script>
     <script>
         $(document).ready(function () {
+            <?php if (isset($_SESSION['msg'])) : ?>
+                Swal.fire({
+                    position: "top-end",
+                                        title: "Congratulations!",
+                                        text: "<?php echo $_SESSION['msg'] ?>",
+                                        icon: "success",
+                                        showconfirmButtonColor: false,
+                                        timer: 5000,
+                                    });
+                <?php endif ?>
             $('body').on('click', '.delete', function () {
+
+
+                $id = $(this).attr['data-id']
+                alert($id) 
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
