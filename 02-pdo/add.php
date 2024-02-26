@@ -16,17 +16,17 @@ require "config/database.php";
     <main>
         <header class="nav level-1">
             <a href="index.php">
-                <img src="<?php echo URLIMGS . "/back.svg" ?>" alt="back">
+                <img src="<?php echo URLIMGS . "/ico-back.svg" ?>" alt="back">
             </a>
-            <img src="<?php echo URLIMGS . "/Vector.svg"?> alt="logo">
+            <img src="<?php echo URLIMGS . "/Vector.svg"?>" alt="logo">
             <a href="" class="burguer">
-                <img src="<?php echo URLIMGS . "/mburger.svg"?>  alt="menu burguer">
+                <img src="<?php echo URLIMGS . "/mburger.svg"?>"  alt="menu burguer">
             </a>
         </header>
         <section class="create">
             <h1>Add Pet</h1>
+            <img src="<?php echo URLIMGS . "/ph_user-fill.svg"?>"  alt="upload" id="upload">
             <form action="" method="post" enctype="multipart/form-data">
-                <img src="<?php echo URLIMGS . "/ph_user-fill.svg"?>  alt="upload" id="upload">
                 <input type="file" name="photo" id="photo" accept="image/*" required>
                 <input type="text" name="name" placeholder="name" required>
                 <input type="text" name="kind" placeholder="kind" required>
@@ -54,9 +54,10 @@ require "config/database.php";
 
 
                 if (addpet($conx, $data)) {
-                    move_uploaded_file($_FILES['photo']['tmp_name'], "../01-ui/images/" . $photo);
+                    move_uploaded_file($_FILES['photo']['tmp_name'], "../01-UI/image/" . $photo);
+                    header("location: index.php");
                 } else {
-                    return false;
+
                 }
             }
             
