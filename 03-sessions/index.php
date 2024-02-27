@@ -3,7 +3,7 @@
     require "config/database.php";
 
     if (isset($_SESSION['uid'])) {
-        header("Location: dashboard.php");
+    header("location: dashboard.php");
     }
 
 ?>
@@ -30,19 +30,6 @@
                 <input type="password" name="password" placeholder="password" required>
             <button type="submit">Login</button>
             </form>
-            <?php 
-            if ($_POST) {
-                $email = $_POST['email'];
-                $pass =  $_POST['password'];
-                // echo var_dump($_POST);
-
-                if (loginuser($conx, $email, $pass)) {
-                    header("Location: dashboard.php");
-                } else {
-                    header("Location: index.php");
-                }
-            } 
-            ?>
         </section>
     </main>
 
