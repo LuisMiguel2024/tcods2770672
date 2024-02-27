@@ -17,19 +17,19 @@ $pet = getpet($conx, $_GET['id']);
 
 <body>
     <main>
-    <header class="nav level-1">
+        <header class="nav level-1">
             <a href="index.php">
                 <img src="<?php echo URLIMGS . "/ico-back.svg" ?>" alt="back">
             </a>
-            <img src="<?php echo URLIMGS . "/Vector.svg"?>" alt="logo">
+            <img src="<?php echo URLIMGS . "/Vector.svg" ?>" alt="logo">
             <a href="" class="burguer">
-                <img src="<?php echo URLIMGS . "/mburger.svg"?>"  alt="menu burguer">
+                <img src="<?php echo URLIMGS . "/mburger.svg" ?>" alt="menu burguer">
             </a>
         </header>
         <section class="edit">
             <h1>Edit Pet</h1>
-            <form action="dashboard.html" method="post" enctype="multipart/form-data">
-                <img src="<?php echo URLIMGS . "/" . $pet['photo']?>" alt="upload" width="240px" id="upload">
+            <form action="" method="post" enctype="multipart/form-data">
+                <img src="<?php echo URLIMGS . "/" . $pet['photo'] ?>" alt="upload" width="240px" id="upload">
                 <input type="file" name="photo" id="photo" accept="image/*">
                 <input type="text" name="name" value="<?= $pet['name'] ?>" placeholder="full name" value="Name" required>
                 <input type="text" name="pet" value="<?= $pet['kind'] ?>" placeholder="type of pet" value="kind" required>
@@ -37,60 +37,64 @@ $pet = getpet($conx, $_GET['id']);
                 <input type="text" name="age" value="<?= $pet['age'] ?>" placeholder="age" value="Dog" required>
                 <input type="text" name="breed" value="<?= $pet['breed'] ?>" placeholder="breed" value="breed" required>
                 <input type="text" name="location" value="<?= $pet['location'] ?>" placeholder="location" value="location" required>
-                            <button type="submit">Update</button>
+                <button type="submit">Update</button>
             </form>
-        </section>
-    </main>
             <?php
-            if($_POST) {
+            if ($_POST) {
 
-                if(is_file($_FILES['photo']['tmp_name'])) {
+                if (!empty($_FILES['photo']['name'])) {
                     $photo = time() . "." . pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+                    $data = [
+                        'id'       => $_POST['id'],
+                        'name'     => $_POST['name'],
+                        'photo'    => $photo,
+                        'kind'     => $_POST['kind'],
+                        'weight'   => $_POST['weight'],
+                        'age'      => $_POST['age'],
+                        'breed'    => $_POST['breed'],
+                        'location' => $_POST['location']
+                    ];
                 } else {
-                    $photo = '';
+                    $data = [
+                        'id'       => $_POST['id'],
+                        'name'     => $_POST['name'],
+                        'kind'     => $_POST['kind'],
+                        'weight'   => $_POST['weight'],
+                        'age'      => $_POST['age'],
+                        'breed'    => $_POST['breed'],
+                        'location' => $_POST['location']
+                    ];
                 }
-                }
-
-                $data = [
-                    'name' => $_POST['name'],
-                    'photo' => $photo,
-                    'kind' => $_POST['kind'],
-                    'weight' => $_POST['weight'],
-                    'age' => $_POST['age'],
-                    'breed' => $_POST['breed'],
-                    'location' => $_POST['location']
-                ];
                 //echo var_dump($data);
 
-
-                if (updatepet($conx, $data)) {
-                    if (!empty($_FILES['photo']['tmp_name'])) {
-                        move_uploaded_file($_FILES['photo']['tmp_name'], "../01-UI/image/" . $photo);
+                if (updatePet($conx, $data)) {
+                    if (!empty($_FILES['photo']['name'])) {
+                        move_uploaded_file($_FILES['photo']['tmp_name'], "../01-ui/image/" . $photo);
                     }
-                    header("location: index.php");
+                    header("Location: index.php");
                 }
-            
+            }
             ?>
         </section>
     </main>
-    <script src="../../js/sweetalert2.js"></script>
-    <script src="../../js/jquery-3.7.1.min.js"></script>
+    <script src="<?php echo URLJS . "/sweetalert2.js" ?>"> </script>
+    <script src="<?php echo URLJS . "/jquery-3.7.1.min.js" ?>"> </script>
     <script>
-        $(document).ready(function () {
-            $('#upload').click(function (e) { 
+        $(document).ready(function() {
+            $('#upload').click(function(e) {
                 e.preventDefault()
                 $('#photo').click()
-                
+
             });
-            $('#photo').change(function (e) { 
+            $('#photo').change(function(e) {
                 e.preventDefault();
                 let reader = new FileReader()
                 reader.onload = function(event) {
                     $('#upload').attr('src', event.target.result)
                 }
                 reader.readAsDataURL(this.files[0])
-            });
-        });
+            })
+        })
     </script>
 </body>
 

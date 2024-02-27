@@ -1,7 +1,9 @@
-<?php 
-require "config/app.php";
-require "config/database.php";
-if (isset($_GET['id'])) {
-    if (deletepet($conx, $_GET['id']));
-    header("location: index.php");
-}
+<?php
+    require "config/app.php";
+    require "config/database.php";
+
+    if (isset($_GET['id'])) {
+        if (deletePet($conx, $_GET['id'])) {
+            header("Location: index.php");
+        }
+    }
