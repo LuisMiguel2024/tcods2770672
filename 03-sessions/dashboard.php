@@ -2,6 +2,8 @@
     require "config/app.php";
     require "config/database.php";
 
+    $user = getuser($conx, $_SESSION['uid']);
+
 if(!isset($_SESSION['uid'])) {
     $_SESSION['error'] = "Please Login first to access dashboard.";
     header("Location: index.php");
@@ -23,7 +25,7 @@ if(!isset($_SESSION['uid'])) {
             gap: 2rem;
             align-items: center;
             position: absolute;
-            top: -800px;
+            top: -1000px;
             opacity: 0;
             left: 0;
             z-index: 999;
@@ -40,6 +42,33 @@ if(!isset($_SESSION['uid'])) {
                 text-decoration: none;
             }
         } 
+
+        a.closem {
+            position: absolute;
+            top: 44px;
+            right: 0px;
+        }
+        nav {
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            img {
+                border: 2px solid #fff;
+                border-radius: 60%;
+                object-fit: cover;
+                width: 200px;
+            }
+
+            h4, h5 {
+                margin: 0;
+            }
+            a.closes {
+                border: 2px solid #fff;
+            }
+        }
+
         div.menu.open {
             animation: openmenu 0.5s ease-in 1 forwards;
         }
@@ -72,12 +101,15 @@ if(!isset($_SESSION['uid'])) {
     <div class="menu">
         <a href="javascript:;" class="closem">X</a>
         <nav>
-            <a href="close.php">Close Sesion</a>
+            <img src="<?= URLIMGS."/".$user['photo']?>" alt="Photo">
+            <h4><?php echo $user['fullname'] ?></h4>
+            <h5><?php echo $user['role'] ?></h5>
+            <a class="closes" href="close.php">Close Sesion</a>
         </nav>
     </div>
 <main>
 <header class="nav level-0">
-            <a href="">
+            <a href="#">
                 <img src="<?php echo URLIMGS . "/ico-back.svg" ?>" alt="Back">
             </a>
             <img src="<?php echo URLIMGS . "/Vector.svg" ?>" alt="Logo">
@@ -85,6 +117,9 @@ if(!isset($_SESSION['uid'])) {
                 <img src="<?php echo URLIMGS . "/mburger.svg" ?>" alt="Menu Burger">
             </a>
         </header>
+
+        <?php if ($_SESSION['urole'] == 'Admin'): ?>
+
         <section class="dashboard">
             <h1>Dashboard</h1>
             <menu>
@@ -110,6 +145,21 @@ if(!isset($_SESSION['uid'])) {
                 </ul>
             </menu>
         </section>
+        <?php elseif ($_SESSION['urole'] == 'Customer'): ?>
+            <section class="dashboard">
+            <h1>Dashboard</h1>
+            <menu>
+                <ul>
+                    <li>
+                    <a href="#">
+                            <img src="<?php echo URLIMGS . "/ico-adopt.svg" ?>"  alt="adoptions">
+                            <span>Module Adoptions</span>
+                        </a>
+                    </li>
+                </ul>
+            </menu>
+        </section>
+        <?php endif ?>
     </main>
     <script src="<?php echo URLJS . "/sweetalert2.js" ?>"></script>
     <script src="<?php echo URLJS . "/jquery-3.7.1.min.js" ?>"></script>
