@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('document')->unique();
             $table->string('fullname');
-            $table->string('photo')->default('ico-users.svg');
+            $table->string('photo')->default('ph_user_fill.svg');
             $table->string('phone');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

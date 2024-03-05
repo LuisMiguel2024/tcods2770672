@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -14,25 +14,25 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        //Add record with ORM
+        // Add a record with Eloquent ORM
         $user = new User;
-        $user->document = '70000000';
-        $user->fullname = "jeremias springfield";
-        $user->photo = 'ph_user_fill.svg';
-        $user->phone = '3101010101';
-        $user->email = 'jere@gmail.com';
+        $user->document = 65000001;
+        $user->fullname = "Jeremias Springfield";
+        $user->photo    = "jeremias.png";
+        $user->phone    = 3100000001;
+        $user->email    = "jeremias@gmail.com";
         $user->password = bcrypt('admin');
-        $user->role = 'admin';
+        $user->role     = "Admin";
         $user->save();
 
-        //ADD A RECORD WITH ACCOP
+        // Add a record with Array
         DB::table('users')->insert([
-            'document' == 70000000,
-            'fullname' == 'jeremias springfield',
-            'photo' == 'ph_user_fill.svg',
-            'phone' == 3101010101,
-            'email' == 'jere@gmail.com',
-            'password' == bcrypt('12345'),
+            'document' => 85000002,
+            'fullname' => 'John Wick',
+            'photo'    => '1709301260.png',
+            'phone'    => 3100000002,
+            'email'    => 'johnw@gmail.com',
+            'password' => bcrypt('12345')
         ]);
 
     }
