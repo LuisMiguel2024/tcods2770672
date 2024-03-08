@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Kind</th>
+            <th>Breed</th>
+            <th>Location</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+@foreach($pets as $pet)
+<tr>
+    <td>{{$pet->id}}</td>
+    <td>{{$pet->name}}</td>
+    <td>{{$pet->kind}}</td>
+    <td>{{$pet->breed}}</td>
+    <td>{{$pet->location}}</td>
+    <td>{{$pet->created_at->diffForHumans()}}</td>
+    <td>{{$pet->updated_at->diffForHumans()}}</td>
+    <td>{{$pet->age}}</td>
+</tr>
+@endforeach
+</table>

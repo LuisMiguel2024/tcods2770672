@@ -18,4 +18,9 @@ class pet extends Model
         'password',
         'role'
     ];
+
+    //relationship: (pet has one adoption)
+    public function adpotions() {
+        return $this->hasOne('App\Models\Adoption');
+    }
 }

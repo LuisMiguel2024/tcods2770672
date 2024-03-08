@@ -13,4 +13,15 @@ class adoption extends Model
         'user_id',
         'pet_id',
     ];
+
+    
+    //relationship: (adoption belong to user)
+    public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
+    
+    //relationship: (adoption belong to pet)
+    public function pet(){
+        return $this->belongsTo('App\Models\pet');
+    }
 }
