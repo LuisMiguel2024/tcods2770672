@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,28 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sayhello', function () {
-    return "<h1> Hello TCO 2770672 </h1>";
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/pets/show', function () {
-    $pets = App\Models\Pet::all();
-    //echo var_dump($pets);
-    dd($pets->toArray()); // Dump & die
-});
-
-Route::get('/pet/view', function () {
-    $pets = App\Models\Pet::all();
-    return view('petsview')->with('pets', $pets);
-});
-
-Route::get('/user/show', function () {
-    $users = App\Models\User::all();
-    //echo var_dump($users);
-    dd($users->toArray()); // Dump & die
-});
-
-Route::get('/user/view', function () {
-    $users = App\Models\User::all();
-    return view('usersview')->with('users', $users);
-});
+require __DIR__.'/auth.php';

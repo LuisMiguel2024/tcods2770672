@@ -15,7 +15,7 @@
     <td>{{$user->id}}</td>
     <td>{{$user->fullname}}</td>
     <td>{{$user->email}}</td>
-    <td>{{Carbon\Carbon::parse($user->birthdate)->diffForHumans() }}</td>
+    <td>{{Carbon\Carbon::parse($user->$birthdate)->diffForHumans() }}</td>
     <td>{{$user->phone}}</td>
     {{-- <td>{{$user->created_at->locale('es')->diffForHumans()}}</td> --}}
     <td>{{Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</td>
