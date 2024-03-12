@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -49,4 +49,76 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
+@extends('layouts.app')
+
+@section('title', 'Register Page - PetsApp')
+
+@section('content')
+<header>
+    <img src="{{ asset('image/Vector.svg') }}" alt="Logo">
+</header>
+<section class="register create">
+    <menu>
+        <a href="{{ url('login/') }}">Login</a>
+        <a href="javascript:;">Register</a>
+    </menu>
+    <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <img src="{{ asset('image/ph_user-fill.svg') }}" id="upload" width="240px" alt="Upload">
+        <input type="file" name="photo" id="photo" accept="image/*">
+        <input type="number" name="document" placeholder="Document" value="{{ old('document') }}">
+        <input type="text" name="fullname" placeholder="Full Name" value="{{ old('fullname') }}">
+        <select name="gender">
+            <option value="">Select gender...</option>
+            <option value="Female" @if(old('gender') == 'Female') selected @endif>Female</option>
+            <option value="Male" @if(old('gender') == 'Male') selected @endif>Male</option>
+        </select>
+        <input type="date" name="birth" placeholder="BirthDate" value="{{ old('birth') }}">
+        <input type="text" name="phone" placeholder="Phone Number" value="{{ old('phone') }}">
+        <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password_confirmation" placeholder="Confirm Password">
+        <button type="submit">Register</button>
+    </form>
+</section>   
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function () {
+        $('#upload').click(function (e) { 
+            e.preventDefault()
+            $('#photo').click()
+        })
+
+        $('#photo').change(function (e) { 
+            e.preventDefault();
+            let reader = new FileReader()
+            reader.onload = function(event) {
+                $('#upload').attr('src', event.target.result)
+            }
+            reader.readAsDataURL(this.files[0])
+        })
+    })
+</script>
+@if (count($errors->all()) > 0)
+@php $error = '' @endphp
+@foreach ($errors->all() as $message) 
+    @php $error .= '<li>' . $message . '</li>' @endphp
+@endforeach
+<script>
+    $(document).ready(function() {
+        Swal.fire({
+            position: "center",
+            title: "Ops!",
+            html: `@php echo $error @endphp`,
+            icon: 'error',
+            showconfirmbutton: false,
+            timer: 5000
+        })
+    })
+</script>
+    
+@endif
+@endsection

@@ -11,5 +11,8 @@
     <main>
         @yield('content')
     </main>
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+    @yield('js')
 </body>
 </html>
