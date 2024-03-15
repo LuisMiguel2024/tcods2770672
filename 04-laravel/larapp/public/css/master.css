@@ -200,6 +200,13 @@ main {
         }
     }
 
+    header.nav.level-2 {
+        a:last-of-type {
+            visibility: hidden;
+            pointer-events: none;
+        }
+    }
+
     section.dashboard {
         h1 {
             font-size: 24px;
@@ -575,5 +582,48 @@ main {
         top: 0;
         opacity: 1;
     }
-    
-}
+
+    table {
+        tfoot {
+            nav {
+                ul.pagination {
+                    list-style: none;
+                    padding: 0;
+                    display: flex;
+                    justify-content: space-between;
+                    li {
+                        a:is(:link, :visited) {
+                            border: 2px solid #000000;
+                            border-radius: 30px;
+                            color: #000000;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 2rem;
+                            text-decoration: none;
+                            transition: all 0.4s ease-in;
+                            height: 50px;
+                            width: 50px;
+                        }
+                        a[rel=prev]:hover {
+                            transform: translateX(-6px);
+                        }
+                        a[rel=next]:hover {
+                            transform: translateX(6px);
+                        }
+                        
+                    }
+                    li.disabled {
+                        opacity: 0;
+                    }
+                }
+            }
+                
+            }
+        }
+    }
+
+
+
+
+

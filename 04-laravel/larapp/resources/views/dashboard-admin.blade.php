@@ -20,23 +20,7 @@
 @section('title', 'Dashboard Page - PetsApp')
 
 @section('content')
-
-<div class="menu">
-    <a href="javascript:;" class="closem">
-        <img src="{{ asset('image/closem.svg') }}" alt="">
-    </a>
-    <nav>
-        <img src="{{ asset('image') . '/' . Auth::user()->photo }}" alt="Photo">
-        <h4>{{ Auth::user()->fullname }}</h4>
-        <h5>{{ Auth::user()->role }}</h5>
-        <form action="{{ route('logout') }}" method="post">
-            <button class="closes">Log Out</button>
-            @csrf
-        </form>
-    </nav>
-</div>
-
-
+@include('layouts.menuburguer')
 <header class="nav level-0">
     <a href="">
         <img src="{{ asset('image/ico-back.svg') }}" alt="Back">
@@ -49,7 +33,7 @@
 
 
 <section class="dashboard">
-    <h1>Dashboard</h1>
+    <h1>Dashboard Admin:</h1>
     <menu>
         <ul>
             <li>
