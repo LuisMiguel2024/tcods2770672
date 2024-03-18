@@ -4,7 +4,7 @@
 <?php $__env->startSection('content'); ?>
 <div class="menu">
     <a href="javascript:;" class="closem">
-        <img src="<?php echo e(asset('image/closem.svg')); ?>" alt="">
+        <img src="<?php echo e(asset('image/uiw_close.svg')); ?>" alt="">
     </a>
     <nav>
         <img src="<?php echo e(asset('image') . '/' . Auth::user()->photo); ?>" alt="Photo">
@@ -47,7 +47,7 @@
                         <a href="<?php echo e(url ('users/'.$user->id)); ?>" class="show">
                             <img src="<?php echo e(asset ('image/ico-search.svg')); ?>" alt="Show">
                         </a>
-                        <a href="<?php echo e(url ('users/edit/'.$user->id.'/edit')); ?>" class="edit">
+                        <a href="<?php echo e(url('users/' . $user->id . '/edit')); ?>" class="edit">
                             <img src="<?php echo e(asset ('image/ico-edit.svg')); ?>" alt="Edit">
                         </a>
                         <a href="javascript:;" class="delete" data-id="<?php echo e($user->id); ?>">

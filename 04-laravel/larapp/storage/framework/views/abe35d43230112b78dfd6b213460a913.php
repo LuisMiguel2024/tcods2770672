@@ -1,6 +1,6 @@
 <div class="menu">
     <a href="javascript:;" class="closem">
-        <img src="<?php echo e(asset('image/closem.svg')); ?>" alt="">
+        <img src="<?php echo e(asset('image/uiw_close.svg')); ?>" alt="">
     </a>
     <nav>
         <img src="<?php echo e(asset('image') . '/' . Auth::user()->photo); ?>" alt="Photo">

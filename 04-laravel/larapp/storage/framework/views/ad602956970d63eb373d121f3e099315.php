@@ -1,23 +1,7 @@
 <?php $__env->startSection('title', 'Dashboard Page - PetsApp'); ?>
 
 <?php $__env->startSection('content'); ?>
-
-<div class="menu">
-    <a href="javascript:;" class="closem">
-        <img src="<?php echo e(asset('image/closem.svg')); ?>" alt="">
-    </a>
-    <nav>
-        <img src="<?php echo e(asset('image') . '/' . Auth::user()->photo); ?>" alt="Photo">
-        <h4><?php echo e(Auth::user()->fullname); ?></h4>
-        <h5><?php echo e(Auth::user()->role); ?></h5>
-        <form action="<?php echo e(route('logout')); ?>" method="post">
-            <button class="closes">Log Out</button>
-            <?php echo csrf_field(); ?>
-        </form>
-    </nav>
-</div>
-
-
+<?php echo $__env->make('layouts.menuburguer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <header class="nav level-0">
     <a href="">
         <img src="<?php echo e(asset('image/ico-back.svg')); ?>" alt="Back">
@@ -30,7 +14,7 @@
 
 
 <section class="dashboard">
-    <h1>Dashboard Administrador:</h1>
+    <h1>Dashboard Admin:</h1>
     <menu>
         <ul>
             <li>

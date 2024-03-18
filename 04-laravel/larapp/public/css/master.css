@@ -405,6 +405,9 @@ main {
             height: 280px;
             width: 280px;
         }
+        p.role {
+            font-size: 1.4rem;
+        }
 
         div.info {
             display: grid;

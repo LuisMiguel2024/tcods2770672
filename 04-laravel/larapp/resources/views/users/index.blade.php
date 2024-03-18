@@ -4,7 +4,7 @@
 @section('content')
 <div class="menu">
     <a href="javascript:;" class="closem">
-        <img src="{{ asset('image/closem.svg') }}" alt="">
+        <img src="{{ asset('image/uiw_close.svg') }}" alt="">
     </a>
     <nav>
         <img src="{{ asset('image') . '/' . Auth::user()->photo }}" alt="Photo">
@@ -47,7 +47,7 @@
                         <a href="{{ url ('users/'.$user->id)}}" class="show">
                             <img src="{{ asset ('image/ico-search.svg') }}" alt="Show">
                         </a>
-                        <a href="{{ url ('users/edit/'.$user->id.'/edit')}}" class="edit">
+                        <a href="{{ url('users/' . $user->id . '/edit') }}" class="edit">
                             <img src="{{ asset ('image/ico-edit.svg') }}" alt="Edit">
                         </a>
                         <a href="javascript:;" class="delete" data-id="{{ $user->id}}">

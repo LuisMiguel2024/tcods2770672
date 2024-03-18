@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('tittle', 'Create Users Page - PetsApp')
+@section('tittle', 'Edit Users Page - PetsApp')
 
 @section('content')
     <header class="nav level-2">
@@ -12,23 +12,23 @@
         </a>
     </header>
     <section class="register create">
-        <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('users.update') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <img src="{{ asset('image/ph_user-fill.svg') }}" id="upload" width="240px" alt="Upload">
+            @method('put')
+            <input type="hidden" name="photoactual" value="{{ $user->photo }}">
+            <img src="{{ asset('image/.$user->photo') }}" id="upload" width="240px" alt="Upload">
             <input type="file" name="photo" id="photo" accept="image/*">
-            <input type="number" name="document" placeholder="Document" value="{{ old('document') }}">
-            <input type="text" name="fullname" placeholder="Full Name" value="{{ old('fullname') }}">
+            <input type="number" name="document" placeholder="Document" value="{{ old('document', $user->document) }}">
+            <input type="text" name="fullname" placeholder="Full Name" value="{{ old('fullname', $user->fullname) }}">
             <select name="gender">
                 <option value="">SELECT GENDER...</option>
-                <option value="Female" @if(old('gender') == 'Female') selected @endif>Female</option>
-                <option value="Male" @if(old('gender') == 'Male') selected @endif>Male</option>
+                <option value="Female" @if(old('gender', $user->gender) == 'Female') selected @endif>Female</option>
+                <option value="Male" @if(old('gender', $user->gender) == 'Male') selected @endif>Male</option>
             </select>
-            <input type="date" name="birth" placeholder="BirthDate" value="{{ old('birth') }}">
-            <input type="text" name="phone" placeholder="Phone Number" value="{{ old('phone') }}">
-            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
-            <input type="password" name="password" placeholder="Password">
-            <input type="password" name="password_confirmation" placeholder="Confirmed Password">
-            <button type="submit">Add</button>
+            <input type="date" name="birth" placeholder="BirthDate" value="{{ old('birth', $user->birth) }}">
+            <input type="text" name="phone" placeholder="Phone Number" value="{{ old('phone', $user->phone) }}">
+            <input type="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}">
+            <button type="submit">Edit</button>
         </form>
     </section>
     @endsection

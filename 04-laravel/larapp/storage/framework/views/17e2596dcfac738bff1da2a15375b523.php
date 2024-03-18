@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('tittle', 'Users Page - PetsApp'); ?>
+<?php $__env->startSection('tittle', 'Edit Users Page - PetsApp'); ?>
 
 <?php $__env->startSection('content'); ?>
     <header class="nav level-2">
@@ -12,23 +12,23 @@
         </a>
     </header>
     <section class="register create">
-        <form action="<?php echo e(route('users.store')); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?php echo e(url('users.update')); ?>" method="post" enctype="multipart/form-data">
             <?php echo csrf_field(); ?>
-            <img src="<?php echo e(asset('image/ph_user-fill.svg')); ?>" id="upload" width="240px" alt="Upload">
+            <?php echo method_field('put'); ?>
+            <input type="hidden" name="photoactual" value="<?php echo e($user->photo); ?>">
+            <img src="<?php echo e(asset('image/.$user->photo')); ?>" id="upload" width="240px" alt="Upload">
             <input type="file" name="photo" id="photo" accept="image/*">
-            <input type="number" name="document" placeholder="Document" value="<?php echo e(old('document')); ?>">
-            <input type="text" name="fullname" placeholder="Full Name" value="<?php echo e(old('fullname')); ?>">
+            <input type="number" name="document" placeholder="Document" value="<?php echo e(old('document', $user->document)); ?>">
+            <input type="text" name="fullname" placeholder="Full Name" value="<?php echo e(old('fullname', $user->fullname)); ?>">
             <select name="gender">
                 <option value="">SELECT GENDER...</option>
-                <option value="Female" <?php if(old('gender') == 'Female'): ?> selected <?php endif; ?>>Female</option>
-                <option value="Male" <?php if(old('gender') == 'Male'): ?> selected <?php endif; ?>>Male</option>
+                <option value="Female" <?php if(old('gender', $user->gender) == 'Female'): ?> selected <?php endif; ?>>Female</option>
+                <option value="Male" <?php if(old('gender', $user->gender) == 'Male'): ?> selected <?php endif; ?>>Male</option>
             </select>
-            <input type="date" name="birth" placeholder="BirthDate" value="<?php echo e(old('birth')); ?>">
-            <input type="text" name="phone" placeholder="Phone Number" value="<?php echo e(old('phone')); ?>">
-            <input type="email" name="email" placeholder="Email" value="<?php echo e(old('email')); ?>">
-            <input type="password" name="password" placeholder="Password">
-            <input type="password" name="password_confirmation" placeholder="Confirmed Password">
-            <button type="submit">Add</button>
+            <input type="date" name="birth" placeholder="BirthDate" value="<?php echo e(old('birth', $user->birth)); ?>">
+            <input type="text" name="phone" placeholder="Phone Number" value="<?php echo e(old('phone', $user->phone)); ?>">
+            <input type="email" name="email" placeholder="Email" value="<?php echo e(old('email', $user->email)); ?>">
+            <button type="submit">Edit</button>
         </form>
     </section>
     <?php $__env->stopSection(); ?>
@@ -69,4 +69,4 @@
     </script>
 <?php endif; ?>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\AUTOCAD\Desktop\tcods2770672\04-laravel\larapp\resources\views/users/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\AUTOCAD\Desktop\tcods2770672\04-laravel\larapp\resources\views/users/edit.blade.php ENDPATH**/ ?>

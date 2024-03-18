@@ -1,6 +1,6 @@
 <div class="menu">
     <a href="javascript:;" class="closem">
-        <img src="{{ asset('image/closem.svg') }}" alt="">
+        <img src="{{ asset('image/uiw_close.svg') }}" alt="">
     </a>
     <nav>
         <img src="{{ asset('image') . '/' . Auth::user()->photo }}" alt="Photo">
