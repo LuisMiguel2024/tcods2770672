@@ -17,7 +17,6 @@
     </nav>
 </div>
 
-
 <header class="nav level-0">
     <a href="">
         <img src="<?php echo e(asset('image/ico-back.svg')); ?>" alt="Back">

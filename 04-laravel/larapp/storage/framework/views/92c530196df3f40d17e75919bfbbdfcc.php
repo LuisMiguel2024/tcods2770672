@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('tittle', 'Users Page - PetsApp'); ?>
+<?php $__env->startSection('tittle', 'Pets Page - PetsApp'); ?>
 
 <?php $__env->startSection('content'); ?>
 
@@ -13,30 +13,30 @@
         </a>
     </header>
     <section class="module">
-        <h1>Module Users</h1>
-        <a class="add" href="<?php echo e(url ('users/create')); ?>">
+        <h1>Module Pets</h1>
+        <a class="add" href="<?php echo e(url ('pets/create')); ?>">
             <img src="<?php echo e(asset ('image/ico-add.svg')); ?>" width="30px" alt="Add">
-            Add User
+            Add Pet
         </a>
         <table>
             <tbody>
-            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $pets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                     <td>
-                        <img src="<?php echo e(asset ('image/'.$user->photo)); ?>" alt="Pet">
+                        <img src="<?php echo e(asset ('image/'.$pet->photo)); ?>" alt="Pet">
                     </td>
                     <td>
-                        <span><?php echo e($user->fullname); ?></span>
-                        <p><?php echo e($user->role); ?></p>
+                        <span><?php echo e($pet->fullname); ?></span>
+                        <p><?php echo e($pet->role); ?></p>
                     </td>
                     <td>
-                        <a href="<?php echo e(url ('users/' .$user->id)); ?>" class="show">
+                        <a href="<?php echo e(url ('pets/' .$pet->id)); ?>" class="show">
                             <img src="<?php echo e(asset ('image/ico-search.svg')); ?>" alt="Show">
                         </a>
-                        <a href="<?php echo e(url('users/' . $user->id . '/edit')); ?>" class="edit">
+                        <a href="<?php echo e(url('pets/' . $pet->id . '/edit')); ?>" class="edit">
                             <img src="<?php echo e(asset ('image/ico-edit.svg')); ?>" alt="Edit">
                         </a>
-                        <form action="<?php echo e(url('users/' .$user->id)); ?>" method="post">
+                        <form action="<?php echo e(url('pets/' .$pet->id)); ?>" method="post">
                     <?php echo csrf_field(); ?>
                     <?php echo method_field('delete'); ?>
                     <button type="button" class="btn-delete">
@@ -50,7 +50,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="3">
-                                <?php echo e($users->links('layouts.paginator')); ?>
+                                <?php echo e($pets->links('layouts.paginator')); ?>
 
                             
                         </td>
@@ -96,4 +96,4 @@
             })
     </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\AUTOCAD\Desktop\tcods2770672\04-laravel\larapp\resources\views/users/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\AUTOCAD\Desktop\tcods2770672\04-laravel\larapp\resources\views/pets/index.blade.php ENDPATH**/ ?>

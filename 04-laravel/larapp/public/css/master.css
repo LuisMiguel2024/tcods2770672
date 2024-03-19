@@ -352,10 +352,52 @@ main {
                             font-size: 14px;
                         }
                     }
+                    td:nth-child(3) {
+                        display: flex;
+                        form {
+                            margin: 0;
+                            padding: 0;
+                            button {
+                                background: none;
+                                border: none;
+                                display: block;
+                                height: 40px;
+                                cursor: pointer;
+                                transform: scale(0.9);
+                                transition: all 0.2s ease-in;
+                                width: 40px;
+                                padding: 0;
+                                &:hover {
+                                    transform: scale(1);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+    tbody.adoptions {
+        tr {
+            justify-content: start;
+            gap: 4rem;
+            td:nth-child(2) {
+                width: 220px;
+                span:last-child {
+                    font-style: oblique;
+                }
+            }
+            td:first-of-type {
+                position: relative;
+                img:last-child {
+                    position: absolute;
+                    left: 50px;
+                }
+            }
+        }
+    }
+
+
 
 
     section.create,

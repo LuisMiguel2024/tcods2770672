@@ -12,11 +12,11 @@
         </a>
     </header>
     <section class="register create">
-        <form action="<?php echo e(url('users.update')); ?>" method="post" enctype="multipart/form-data">
+        <form action="<?php echo e(url('users/'.$user->id)); ?>" method="post" enctype="multipart/form-data">
             <?php echo csrf_field(); ?>
             <?php echo method_field('put'); ?>
             <input type="hidden" name="photoactual" value="<?php echo e($user->photo); ?>">
-            <img src="<?php echo e(asset('image/.$user->photo')); ?>" id="upload" width="240px" alt="Upload">
+            <img src="<?php echo e(asset('image/'.$user->photo)); ?>" id="upload" width="240px" alt="Upload">
             <input type="file" name="photo" id="photo" accept="image/*">
             <input type="number" name="document" placeholder="Document" value="<?php echo e(old('document', $user->document)); ?>">
             <input type="text" name="fullname" placeholder="Full Name" value="<?php echo e(old('fullname', $user->fullname)); ?>">
@@ -32,6 +32,7 @@
         </form>
     </section>
     <?php $__env->stopSection(); ?>
+    
     <?php $__env->startSection('js'); ?>
 <script>
     $(document).ready(function () {

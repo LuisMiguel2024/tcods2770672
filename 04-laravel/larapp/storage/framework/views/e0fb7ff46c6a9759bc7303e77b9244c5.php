@@ -13,7 +13,7 @@
 </header>
     <section class="show">
         <h1>Show User</h1>
-        <img src="<?php echo e(asset ('image') . '/' . $user->photo); ?>" class="photo" alt="Photo">
+        <img src="<?php echo e(asset ('image/'.$user->photo)); ?>" class="photo" alt="Photo">
         <p class="role"><?php echo e($user->role); ?></p>
         <div class="info">
             <p><?php echo e($user->document); ?></p>
@@ -22,7 +22,6 @@
             <p><?php echo e($user->phone); ?></p>
             <p><?php echo e($user->gender); ?></p>
             <p><?php echo e(Carbon\Carbon::parse($user->birth)->diffForHumans()); ?></p>
-            
         </div>
     </section>
 

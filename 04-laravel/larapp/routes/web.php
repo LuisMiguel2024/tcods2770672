@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PetController;
+use App\Http\Controllers\AdoptionController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,9 +63,12 @@ Route::middleware('auth')->group(function () {
     //resources
     Route::resources([
         'users' => UserController::class,
-        //'pets' -> PetController::class,
-        //'adoptions' -> AdoptionController::class,
+        'pets' => PetController::class,
+        'adoptions' => AdoptionController::class,
     ]);
+    // customer
+    Route::get('/mydata', [UserController::class, 'mydata']);
+    Route::get('/myadoption', [AdoptionController::class, 'myadoption']);
 });
 
 require __DIR__.'/auth.php';

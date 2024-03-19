@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('tittle', 'Edit Users Page - PetsApp')
+@section('tittle', 'Create Pet Page - PetsApp')
 
 @section('content')
     <header class="nav level-2">
-        <a href="{{ url ('users')}}">
+        <a href="{{ url ('pets')}}">
             <img src="{{ asset ('image/ico-back.svg') }}" alt="Back">
         </a>
         <img src="{{ asset ('image/Vector.svg') }}" alt="Logo">
@@ -12,27 +12,23 @@
         </a>
     </header>
     <section class="register create">
-        <form action="{{ url('users/'.$user->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('pets.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('put')
-            <input type="hidden" name="photoactual" value="{{ $user->photo }}">
-            <img src="{{ asset('image/'.$user->photo) }}" id="upload" width="240px" alt="Upload">
+            <img src="{{ asset('image/ph_user-fill.svg') }}" id="upload" width="240px" alt="Upload">
             <input type="file" name="photo" id="photo" accept="image/*">
-            <input type="number" name="document" placeholder="Document" value="{{ old('document', $user->document) }}">
-            <input type="text" name="fullname" placeholder="Full Name" value="{{ old('fullname', $user->fullname) }}">
-            <select name="gender">
-                <option value="">SELECT GENDER...</option>
-                <option value="Female" @if(old('gender', $user->gender) == 'Female') selected @endif>Female</option>
-                <option value="Male" @if(old('gender', $user->gender) == 'Male') selected @endif>Male</option>
-            </select>
-            <input type="date" name="birth" placeholder="BirthDate" value="{{ old('birth', $user->birth) }}">
-            <input type="text" name="phone" placeholder="Phone Number" value="{{ old('phone', $user->phone) }}">
-            <input type="email" name="email" placeholder="Email" value="{{ old('email', $user->email) }}">
-            <button type="submit">Edit</button>
+            <input type="number" name="id" placeholder="id" value="{{ old('id') }}">
+            <input type="text" name="name" placeholder="Name" value="{{ old('name') }}">
+            <input type="text" name="kind" placeholder="Kind" value="{{ old('kind') }}">
+            <input type="text" name="weight" placeholder="Weight" value="{{ old('weight') }}">
+            <input type="number" name="age" placeholder="Age" value="{{ old('age') }}">
+            <input type="text" name="breed" placeholder="Breed" value="{{ old('breed') }}">
+            <input type="text" name="location" placeholder="Location" value="{{ old('location') }}">
+            <button type="submit">Add</button>
         </form>
     </section>
     @endsection
-    
+
+
     @section('js')
 <script>
     $(document).ready(function () {
@@ -40,7 +36,6 @@
             e.preventDefault()
             $('#photo').click()
         })
-
         $('#photo').change(function (e) { 
             e.preventDefault();
             let reader = new FileReader()

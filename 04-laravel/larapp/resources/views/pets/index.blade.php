@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('tittle', 'Users Page - PetsApp')
+@section('tittle', 'Pets Page - PetsApp')
 
 @section('content')
 
@@ -13,30 +13,30 @@
         </a>
     </header>
     <section class="module">
-        <h1>Module Users</h1>
-        <a class="add" href="{{ url ('users/create')}}">
+        <h1>Module Pets</h1>
+        <a class="add" href="{{ url ('pets/create')}}">
             <img src="{{ asset ('image/ico-add.svg') }}" width="30px" alt="Add">
-            Add User
+            Add Pet
         </a>
         <table>
             <tbody>
-            @foreach ($users as $user)
+            @foreach ($pets as $pet)
                 <tr>
                     <td>
-                        <img src="{{ asset ('image/'.$user->photo) }}" alt="Pet">
+                        <img src="{{ asset ('image/'.$pet->photo) }}" alt="Pet">
                     </td>
                     <td>
-                        <span>{{ $user->fullname }}</span>
-                        <p>{{ $user->role}}</p>
+                        <span>{{ $pet->fullname }}</span>
+                        <p>{{ $pet->role}}</p>
                     </td>
                     <td>
-                        <a href="{{ url ('users/' .$user->id)}}" class="show">
+                        <a href="{{ url ('pets/' .$pet->id)}}" class="show">
                             <img src="{{ asset ('image/ico-search.svg') }}" alt="Show">
                         </a>
-                        <a href="{{ url('users/' . $user->id . '/edit') }}" class="edit">
+                        <a href="{{ url('pets/' . $pet->id . '/edit') }}" class="edit">
                             <img src="{{ asset ('image/ico-edit.svg') }}" alt="Edit">
                         </a>
-                        <form action="{{ url('users/' .$user->id)}}" method="post">
+                        <form action="{{ url('pets/' .$pet->id)}}" method="post">
                     @csrf
                     @method('delete')
                     <button type="button" class="btn-delete">
@@ -50,8 +50,8 @@
                     <tfoot>
                         <tr>
                             <td colspan="3">
-                                {{ $users->links('layouts.paginator') }}
-                            {{--{{ $users->links() }}--}}
+                                {{ $pets->links('layouts.paginator') }}
+                            {{--{{ $pets->links() }}--}}
                         </td>
                         </tr>
                     </tfoot>

@@ -88,24 +88,32 @@ class UserController extends Controller
         return view('users.edit')->with('user', $user);
     }
 
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, User $user)
     {
-        //dd($request->all());
+-        //dd($request->all());
         $validated = $request->validate([
-            'document'  => ['required', 'numeric', 'unique:users,document,'.$user->id],
-            'fullname'  => ['required', 'string', 'max:64'],
-            'gender'    => ['required'],
-            'birth' => ['required', 'date'],
-            'phone'     => ['required'],
-            'email'     => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users, email' . ',' . $user->id],
++            'document'  => ['required', 'numeric', 'unique:users,document,'.$user->id], 
++            'fullname'  => ['required', 'string', 'max:64'], 
++            'gender'    => ['required'], 
++            'birth' => ['required', 'date'], 
++            'phone'     => ['required'], 
++            'email'     => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,'.$user->id],
         ]);
 
         if ($validated) {
             // Upload File
             if ($request->hasFile('photo')) {
+
+                // Delete photo
+                $image_path = public_path("/image/".$user->photo);
+                if (file_exists($image_path)) {
+                        unlink($image_path);
+                }
+
                 $photo = time() . '.' . $request->photo->extension();
                 $request->photo->move(public_path('image'), $photo);
             } else {
@@ -119,7 +127,6 @@ class UserController extends Controller
             $user->photo     = $photo;
             $user->phone     = $request->phone;
             $user->email     = $request->email;
-            
 
             if ($user->save()) {
                 return redirect('users')->with('message', 'The user: '.$request->fullname.' was successfully edited!');
@@ -128,13 +135,19 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
+     //* Remove the specified resource from storage.
     public function destroy(User $user)
     {
+        // Delete photo
+        $image_path = public_path("/image/".$user->photo);
+        if (file_exists($image_path)) {
+                unlink($image_path);
+        } 
+        
         if ($user->delete()) {
             return redirect('users')->with('message', 'The user: '.$user->fullname.' was successfully deleted!');
         }
     }
+
 }

@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('tittle', 'Users Page - PetsApp'); ?>
+<?php $__env->startSection('tittle', 'Create Users Page - PetsApp'); ?>
 
 <?php $__env->startSection('content'); ?>
     <header class="nav level-2">
