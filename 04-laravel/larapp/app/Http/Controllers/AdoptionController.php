@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pet;
+use App\Models\Adoption;
+use App\Models\Pet;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdoptionController extends Controller
 {
@@ -12,7 +14,8 @@ class AdoptionController extends Controller
      */
     public function index()
     {
-        //
+        $adops = Adoption::paginate(10);
+        return view('adoptions.index')->with('adops', $adops);
     }
 
     /**
@@ -20,7 +23,15 @@ class AdoptionController extends Controller
      */
     public function create()
     {
-        //
+        $adps = Adoption::all();
+        $idp  = array();
+        foreach($adps as $adp) {
+            $idp[] = $adp->pet_id;
+        }
+        //dd($idp);
+        $pets = Pet::whereNotIn('id', $idp)->get();
+        //dd($pets->toArray());
+        return view('adoptions.create')->with('pets', $pets);
     }
 
     /**
@@ -28,13 +39,19 @@ class AdoptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $adp = new Adoption;
+        $adp->user_id = $request->user_id;
+        $adp->pet_id  = $request->pet_id;
+
+        if ($adp->save()) {
+            return redirect('myadoptions')->with('message', 'The Adoption was successfully!');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(pet $pet)
+    public function show(Adoption $adoption)
     {
         //
     }
@@ -42,7 +59,7 @@ class AdoptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(pet $pet)
+    public function edit(Adoption $adoption)
     {
         //
     }
@@ -50,7 +67,7 @@ class AdoptionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, pet $pet)
+    public function update(Request $request, Adoption $adoption)
     {
         //
     }
@@ -58,12 +75,22 @@ class AdoptionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(pet $pet)
+    public function destroy(Adoption $adoption)
     {
         //
     }
 
-    public function myadoptions() {
-        
+    public function myadoptions() 
+    {
+        $adps = Adoption::where('user_id', Auth::user()->id)->get();
+        //dd($adps->toArray());
+        return view('adoptions.myadoptions')->with('adps', $adps);
+    }
+
+
+    public function add(Request $request) {
+        $pet = Pet::find($request->id);
+        //dd($pet->toArray());
+        return view('adoptions.add')->with('pet', $pet);
     }
 }

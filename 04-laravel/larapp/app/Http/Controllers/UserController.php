@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserController extends Controller
 {
@@ -136,18 +137,22 @@ class UserController extends Controller
     }
 
 
-     //* Remove the specified resource from storage.
-    public function destroy(User $user)
-    {
-        // Delete photo
-        $image_path = public_path("/image/".$user->photo);
-        if (file_exists($image_path)) {
-                unlink($image_path);
-        } 
-        
-        if ($user->delete()) {
-            return redirect('users')->with('message', 'The user: '.$user->fullname.' was successfully deleted!');
-        }
+ //* Remove the specified resource from storage.
+public function destroy(User $user) {
+     // Delete photo
+    $image_path = public_path("/image/".$user->photo);
+    if (file_exists($image_path)) {
+    unlink($image_path);
+    } 
+    
+    if ($user->delete()) {
+    return redirect('users')->with('message', 'The user: '.$user->fullname.' was successfully deleted!');
     }
+}
+
+public function mydata() {
+    $user = User::find(Auth::user()->id);
+    return view('users.mydata')->with('user', $user);
+}
 
 }

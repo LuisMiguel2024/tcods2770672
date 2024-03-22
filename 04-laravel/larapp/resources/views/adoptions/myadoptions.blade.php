@@ -16,27 +16,43 @@
         <h1>Module Adoptions</h1>
         <table>
             <tbody class='adoptions'>
-            @foreach ($adops as $adop)
+            @forelse ($adops as $adp)
                 <tr>
                     <td>
-                        <img src="{{ asset('image/'.$adop->user->photo) }}" alt="User">
-                        <img src="{{ asset('image/'.$adop->pet->photo) }}" alt="User">
+                        <img src="{{ asset('image/'.$adp->user->photo) }}" alt="User">
+                        <img src="{{ asset('image/'.$adp->pet->photo) }}" alt="User">
                     </td>
                     <td>
-                        <span>{{ $adop->user->fullname }}</span>
-                        <span>{{ $adop->pet->name }}</span>
-                        <span>{{ $adop->created_at->diffforhumans() }}</span>
+                        <span>{{ $adp->user->fullname }}</span>
+                        <span>{{ $adp->pet->name }}</span>
+                        <span>{{ $adp->created_at->diffforhumans() }}</span>
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <p class='no-adoptions'>
+                    There are no adoptions yet... <br>
+                    😄 Please adopt a pet 🐕
+                </p>
+                @endforelse
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2">
-                        {{ $adops->links('layouts.paginator') }}
-                    </td>
-                </tr>
-            </tfoot>
         </table>
     </section>
     @endsection
+
+    @section('js')
+        @if (session('message'))
+            <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    position: "top-end",
+                    title: "Great job!",
+                    text: "{{ session('message') }}",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 5000
+                })
+            })
+            </script>
+        @endif
+    @endsection
+            

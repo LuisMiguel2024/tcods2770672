@@ -51,7 +51,6 @@
                         <tr>
                             <td colspan="3">
                                 {{ $pets->links('layouts.paginator') }}
-                            {{--{{ $pets->links() }}--}}
                         </td>
                         </tr>
                     </tfoot>
